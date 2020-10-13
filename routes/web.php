@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::namespace('Backend')->prefix('admin')->group(function(){
+    Route::get('/', 'Home@index');
+});// end of admin routes
+
