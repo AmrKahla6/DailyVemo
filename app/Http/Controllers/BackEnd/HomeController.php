@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\BackEnd;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 
-class Home extends BackEndController
+class HomeController extends BackEndController
 {
     public function index()
     {
