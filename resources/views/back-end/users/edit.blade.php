@@ -1,10 +1,6 @@
 @extends('back-end.layouts.app')
 
-@php
-    $moduleName = 'User';
-    $pageTitle  = 'Edit ' . $moduleName ;
-    $pageDes    = 'Here you can  edit ' . $moduleName;
-@endphp
+
 
 @section('title')
   {{ $pageTitle }}
@@ -25,7 +21,7 @@
                 <div class="card-category">{{ $pageDes }}</div>
             </div>
             <div class="card-body">
-                <form action="{{ route('users.update' , $user->id) }}" method="post">
+                <form action="{{ route('users.update' , $row) }}" method="post">
                     @method('put')
                    @include('back-end.users.form')
                       <button type="submit" class="btn btn-primary pull-right"> Update {{$moduleName}} </button>

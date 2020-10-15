@@ -1,11 +1,5 @@
 @extends('back-end.layouts.app')
 
-@php
-    $moduleName = 'User';
-    $pageTitle  = ' Create ' .$moduleName  ;
-    $pageDes    = 'Here you can  create new ' . $moduleName;
-@endphp
-
 @section('title')
   {{ $pageTitle }}
 @endsection

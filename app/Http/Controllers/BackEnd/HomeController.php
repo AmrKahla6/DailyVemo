@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 
-class HomeController extends BackEndController
+class HomeController extends BackEnd
 {
     public function index()
     {

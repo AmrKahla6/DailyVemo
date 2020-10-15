@@ -2,63 +2,64 @@
 
 namespace App\Http\Controllers\BackEnd;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\BackEnd\Users\StoreRequest;
+use App\Http\Requests\BackEnd\Users\UpdateRequest;
 
-class UserController extends BackEndController
+
+
+class UserController extends BackEnd
 {
-    public function index()
+    public function __construct(User $model)
     {
-        $users = User::paginate(10);
+        parent::__construct($model);
+    }// end of __constract child function
 
-        return view('back-end.users.index' , compact('users'));
-    }// end of index function
 
-    public function create()
+    // protected function filter($rows)
+    // {
+    //     if(request()->has('name') && request()->get('name') != "")
+    //     {
+    //         $rows += where('name' ,  request()->get('name'));
+    //     }
+
+    //     return $rows;
+    // }
+
+
+    public function store(StoreRequest $request)
     {
-        return view('back-end.users.create');
-    }// end of create function
+        //   dd($request->all());
 
-    public function store(Request $request)
-    {
-    //   dd($request->all());
-    User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-        ]);
+        $requestArray = $request->all();
+
+        $requestArray['password'] =  Hash::make($requestArray['password']);
+
+        $this->model->create($requestArray);
 
         return redirect(route('users.index'));
     } // end of store function
 
-    public function edit(User $user)
-    {
-        return view('back-end.users.edit' , compact('user'));
-    }// end of edit function
 
-    public function update(User $user, Request $request)
-    {
-        $requestArray = [
-            'name' => $request->name,
-            'email' => $request->email,
-        ];
 
-        if($request->has('password') && $request->get('password') != "")
+    public function update($id , UpdateRequest $request)
+    {
+        $row = $this->model->findOrFail($id);
+
+        $requestArray = $request->all();
+
+        if(isset($requestArray['password']) && $requestArray['password'] != "")
         {
-            $requestArray += ['password' => Hash::make($request->password),];
+            $requestArray['password'] =  Hash::make($requestArray['password']);
+        } else {
+             unset($requestArray['password']);
         }
-        $user->update($requestArray);
+
+        $row->update($requestArray);
 
         return redirect(route('users.index'));
 
     }// end of update function
 
-    public function destroy(User $user)
-    {
 
-        $user->delete();
-
-        return redirect(route('users.index'));
-
-    }// end of destroy function
 }// end of controller
