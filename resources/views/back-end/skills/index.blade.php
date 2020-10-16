@@ -51,11 +51,7 @@
                 </th>
 
                 <th>
-                Name
-                </th>
-
-                <th>
-                Email
+                    Skill Name
                 </th>
 
                 <th class="text-right">
@@ -73,10 +69,6 @@
 
                         <td>
                             {{ $row->name }}
-                        </td>
-
-                        <td>
-                            {{ $row->email }}
                         </td>
 
                         <td class="td-actions text-right">

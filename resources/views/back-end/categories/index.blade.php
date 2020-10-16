@@ -51,11 +51,15 @@
                 </th>
 
                 <th>
-                Name
+                Category Name
                 </th>
 
                 <th>
-                Email
+                    Meta Keywords
+                </th>
+
+                <th>
+                    Meta Description
                 </th>
 
                 <th class="text-right">
@@ -76,7 +80,11 @@
                         </td>
 
                         <td>
-                            {{ $row->email }}
+                            {{ $row->meta_keywords }}
+                        </td>
+
+                        <td>
+                            {{ $row->meta_des }}
                         </td>
 
                         <td class="td-actions text-right">

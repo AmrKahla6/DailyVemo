@@ -18,10 +18,18 @@ Route::get('/', function () {
 });
 
 Route::namespace('Backend')->prefix('admin')->group(function(){
-    Route::get('/', 'HomeController@index');
+
+    Route::get('/', 'HomeController@index')->name('admin.home');
 
     // Users Routes
     Route::resource('users', 'UserController')->except(['show']);
+
+    // categories Routes
+    Route::resource('categories', 'CategoryController')->except(['show']);
+
+    // skills Routes
+    Route::resource('skills', 'SkillController')->except(['show']);
+
 });// end of admin routes
 
 

@@ -53,10 +53,17 @@ class BackEnd extends Controller
 
         $pageDes    = 'Here you can  create new ' . $moduleName;
 
-        return view('back-end.'.$this->getClassNameFromModel().'.create' , compact(
+        $folderName = $this->getClassNameFromModel();
+
+        $routeName = $folderName;
+
+
+        return view('back-end.'.$folderName.'.create' , compact(
             'moduleName',
             'pageTitle',
-            'pageDes'
+            'pageDes',
+            'folderName',
+            'routeName',
         ));
     }// end of create function
 
@@ -70,12 +77,18 @@ class BackEnd extends Controller
 
         $pageDes    = 'Here you can  edit ' . $moduleName;
 
+        $folderName = $this->getClassNameFromModel();
 
-        return view('back-end.'.$this->getClassNameFromModel().'.edit' , compact(
+        $routeName = $folderName;
+
+
+        return view('back-end.'.$folderName.'.edit' , compact(
             'row',
             'moduleName',
             'pageTitle',
-            'pageDes'
+            'pageDes',
+            'folderName',
+            'routeName',
         ));
     }// end of edit function
 
