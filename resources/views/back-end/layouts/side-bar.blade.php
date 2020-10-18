@@ -14,7 +14,7 @@
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item">
+        <li class="nav-item  {{ is_active('home') }}">
          <a class="nav-link" href="{{ route('admin.home') }}">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
@@ -39,6 +39,27 @@
             <a class="nav-link" href="{{ route('skills.index') }}">
                <i class="material-icons">content_paste</i>
                <p>Skill</p>
+             </a>
+          </li>
+
+          <li class="nav-item {{ is_active('tags') }}">
+            <a class="nav-link" href="{{ route('tags.index') }}">
+               <i class="material-icons">bubble_chart</i>
+               <p>Tags</p>
+             </a>
+          </li>
+
+          <li class="nav-item {{ is_active('pages') }}">
+            <a class="nav-link" href="{{ route('pages.index') }}">
+               <i class="material-icons">library_books</i>
+               <p>Page</p>
+             </a>
+          </li>
+
+          <li class="nav-item {{ is_active('videos') }}">
+            <a class="nav-link" href="{{ route('videos.index') }}">
+               <i class="material-icons">slideshow</i>
+               <p>Video</p>
              </a>
           </li>
 

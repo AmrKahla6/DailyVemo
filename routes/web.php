@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 Route::namespace('Backend')->prefix('admin')->group(function(){
 
-    Route::get('/', 'HomeController@index')->name('admin.home');
+    // Home Route
+    Route::get('home', 'HomeController@index')->name('admin.home');
 
     // Users Routes
     Route::resource('users', 'UserController')->except(['show']);
@@ -29,6 +30,15 @@ Route::namespace('Backend')->prefix('admin')->group(function(){
 
     // skills Routes
     Route::resource('skills', 'SkillController')->except(['show']);
+
+    // Tags Routes
+    Route::resource('tags', 'TagController')->except(['show']);
+
+    // pages Routes
+    Route::resource('pages', 'PageController')->except(['show']);
+
+    // videos Routes
+    Route::resource('videos', 'VideoController')->except(['show']);
 
 });// end of admin routes
 

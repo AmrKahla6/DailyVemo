@@ -39,7 +39,7 @@
   <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
   <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
     {{-- Plugin for the momentJs --}}
-  <script src="assets/js/plugins/moment.min.js"></script>
+  <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
    {{-- Plugin for Sweet Alert --}}
   <script src="{{asset('assets/js/plugins/sweetalert2.js')}}"></script>
     {{-- Forms Validations Plugin --}}
@@ -66,8 +66,7 @@
   <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js')}}"></script>
  <!-- Library for adding dinamically elements -->
   <script src="{{asset('assets/js/plugins/arrive.min.js')}}"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
  <!-- Chartist JS -->
   <script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
  <!--  Notifications Plugin    -->

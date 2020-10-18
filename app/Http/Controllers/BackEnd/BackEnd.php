@@ -23,6 +23,13 @@ class BackEnd extends Controller
 
         $rows = $this->filter($rows);
 
+        $with = $this->with();
+
+        if(!empty($with))
+        {
+            $rows = $rows->with($with);
+        }
+
         $rows = $rows->paginate(5);
 
         $moduleName = $this->pluralModelName();
@@ -57,6 +64,8 @@ class BackEnd extends Controller
 
         $routeName = $folderName;
 
+        $append = $this->append();
+
 
         return view('back-end.'.$folderName.'.create' , compact(
             'moduleName',
@@ -64,7 +73,7 @@ class BackEnd extends Controller
             'pageDes',
             'folderName',
             'routeName',
-        ));
+        ))->with($append);
     }// end of create function
 
     public function edit($id)
@@ -81,6 +90,9 @@ class BackEnd extends Controller
 
         $routeName = $folderName;
 
+        $append = $this->append();
+
+
 
         return view('back-end.'.$folderName.'.edit' , compact(
             'row',
@@ -89,7 +101,7 @@ class BackEnd extends Controller
             'pageDes',
             'folderName',
             'routeName',
-        ));
+        ))->with($append);
     }// end of edit function
 
 
@@ -101,6 +113,18 @@ class BackEnd extends Controller
         return redirect(route($this->getClassNameFromModel().'.index'));
 
     }// end of destroy function
+
+
+    protected function with()
+    {
+        return [] ;
+    }
+
+    protected function append()
+    {
+        return [] ;
+    }
+
 
 
     protected function filter($rows)
