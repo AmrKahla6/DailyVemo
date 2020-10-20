@@ -71,13 +71,9 @@ $input = 'image';
 @endphp
 
 <div class="col-md-6">
-<div class="form-group bmd-form-group">
-  <lable class="bmd-label-floating">Video image</lable>
-<input  type="text" name="{{ $input }}" value="{{isset($row) ? $row->{ $input } : ""}}"
-
-      class="form-control
-
-       @error($input) is-invalid @enderror">
+<div>
+  <lable>Video image</lable>
+<input  type="file" name="{{ $input }}">
 
        @error($input)
 
@@ -133,11 +129,9 @@ $input = 'image';
 <div class="col-md-6">
 
     <div class="form-group bmd-form-group">
-
-
         <div class="form-group">
-            <select name="{{ $input }}"  class="form-control  @error($input) is-invalid @enderror">
-                <option value="" disabled selected>Video Status</option>
+            <lable class="bmd-label-placeholder" style="position: inherit;">Video Status</lable>
+            <select name="{{ $input }}"  class="form-control  @error($input) is-invalid @enderror" >
                 <option value="1" {{isset($row) && $row->{$input} == 1 ?  "selected" : ""}}>published</option>
                 <option value="0" {{isset($row) && $row->{$input} == 0 ?  "selected" : ""}}>hidden</option>
          </select>
@@ -168,9 +162,9 @@ $input = 'image';
     <div class="form-group bmd-form-group">
 
         <div class="form-group">
-            <select name="{{ $input }}"  class="form-control  @error($input) is-invalid @enderror">
+            <lable style="position: inherit;" class="bmd-label-placeholder">Video Category</lable>
+            <select name="{{ $input }}"  class="form-control  @error($input) is-invalid @enderror" >
                    @foreach ($categories as $category)
-                   <option value="" disabled selected>Video Category</option>
                     <option value="{{ $category->id }}" {{isset($row) && $row->{$input} == $category->id ?  "selected" : ""}}>{{ $category->name }}</option>
 
                    @endforeach
@@ -270,11 +264,11 @@ $input = 'des';
 
     <div class="form-group bmd-form-group">
 
-        <lable>Skills</lable>
+        <lable class="bmd-label-placeholder" style="position: relative">Skills</lable>
             <select name="{{ $input }}"  class="form-control  @error($input) is-invalid @enderror" multiple style="height: 100px">
                    @foreach ($skills as $skill)
 
-                    <option value="{{ $skill->id }}" >{{ $skill->name }}</option>
+                    <option value="{{ $skill->id }}" {{ in_array($skill->id ,$selectedSkills) ? 'selected' : '' }}>{{ $skill->name }}</option>
 
                    @endforeach
             </select>
@@ -291,9 +285,40 @@ $input = 'des';
     </div>
 
 </div>
+
+
+@php
+
+$input = 'tags[]';
+
+@endphp
+
+<div class="col-md-6">
+
+<div class="form-group bmd-form-group">
+
+    <lable class="bmd-label-placeholder" style="position: relative">Tags</lable>
+        <select name="{{ $input }}"  class="form-control  @error($input) is-invalid @enderror" multiple style="height: 100px">
+               @foreach ($tags as $tag)
+
+                <option value="{{ $tag->id }}" {{ in_array($tag->id ,$selectedTags) ? 'selected' : '' }}>{{ $tag->name }}</option>
+
+               @endforeach
+        </select>
+
+        @error($input)
+
+            <span class="invalid-feedback" role="alert">
+
+                <strong>{{ $message }}</strong>
+
+            </span>
+
+        @enderror
 </div>
 
-
+</div>
+</div>
 
 
 

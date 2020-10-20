@@ -40,6 +40,8 @@ Route::namespace('Backend')->prefix('admin')->group(function(){
     // videos Routes
     Route::resource('videos', 'VideoController')->except(['show']);
 
+    Route::post('comments' , 'VideoController@commentStore')->name('comments.store');
+
 });// end of admin routes
 
 

@@ -22,4 +22,14 @@ class Video extends Model
     {
         return $this->belongsToMany(Skill::class, 'skills_videos' , 'skill_id' , 'video_id')->withTimestamps();
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'tags_videos', 'tag_id', 'video_id')->withTimestamps();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }// end of videos Model

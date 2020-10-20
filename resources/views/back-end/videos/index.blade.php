@@ -84,7 +84,12 @@
                         </td>
 
                         <td>
-                            {{ $row->published }}
+                            @if ($row->published == 1 )
+                                published
+                            @else
+                                  hidden
+                            @endif
+
                         </td>
 
                         <td>

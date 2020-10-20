@@ -20,7 +20,7 @@
 
         @component('back-end.shared.create' ,  ['pageTitle' => $pageTitle , 'pageDes' => $pageDes])
 
-                    <form action="{{ route($routeName.'.store') }}" method="post">
+                    <form action="{{ route($routeName.'.store') }}" method="post" enctype="multipart/form-data">
 
                         @include('back-end.'.$folderName.'.form')
 
