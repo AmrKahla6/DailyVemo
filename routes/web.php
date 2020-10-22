@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('frontend.landing');
 
 Route::namespace('Backend')->prefix('admin')->group(function(){
 
@@ -42,9 +42,17 @@ Route::namespace('Backend')->prefix('admin')->group(function(){
 
     Route::post('comments' , 'VideoController@commentStore')->name('comments.store');
 
+    Route::post('comments/{id}' , 'VideoController@commentUpdate')->name('comments.update');
+
+    Route::get('comments/{id}' , 'VideoController@commentDelete')->name('comments.delete');
+
+
 });// end of admin routes
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('category/{id}', 'HomeController@category')->name('front.category');
+Route::get('skill/{id}', 'HomeController@skill')->name('front.skill');
+

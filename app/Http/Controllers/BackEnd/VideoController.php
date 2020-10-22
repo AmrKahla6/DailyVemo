@@ -47,7 +47,7 @@ class VideoController  extends BackEnd
            ->tags()->get()->pluck('id')->toArray();
 
            $array['comments'] = $this->model->find(request()->route()->parameter('video'))
-           ->comments();
+           ->comments()->orderBy('id' , 'desc')->with('user')->get();
        }
 
        return $array ;
@@ -57,9 +57,7 @@ class VideoController  extends BackEnd
     public function store(StoreRequest $request)
     {
         // dd($request->all());
-        $file = $request->file('image');
-        $fileName = time().Str::random('10').'.'.$file->getClientOriginalExtension();
-        $file->move(public_path('uploads') , $fileName);
+        $fileName = $this->Uploadimage($request);
         // dd($fileName);
         $requestArray = ['user_id' => auth()->user()->id , 'image' => $fileName] + $request->except('skills' , 'tags');
         //   dd($requestArray);
@@ -74,9 +72,7 @@ class VideoController  extends BackEnd
         $requestArray = $request->except(['skills' ,'tags']);
 
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $fileName = time().Str::random('10').'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('uploads') , $fileName);
+            $fileName = $this->Uploadimage($request);
             $requestArray = ['image' => $fileName] + $requestArray;
         }
         // dd($requestArray);
@@ -103,6 +99,15 @@ class VideoController  extends BackEnd
 
               //   return $request;
         }
+    }
+
+    protected function Uploadimage($request)
+    {
+        $file = $request->file('image');
+        $fileName = time().Str::random('10').'.'.$file->getClientOriginalExtension();
+        $file->move(public_path('uploads') , $fileName);
+
+        return $fileName;
     }
 
 

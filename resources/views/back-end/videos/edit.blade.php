@@ -49,8 +49,13 @@
             <img src="{{ url('uploads/'.$row->image) }}" width="300">
         @endslot
     @endcomponent
+    @component('back-end.shared.edit' ,  ['pageTitle' => 'Comments' , 'pageDes' => 'Here we can control comments'])
+         @include('back-end.comments.index')
+         @slot('md4')
+                @include('back-end.comments.create')
+         @endslot
+    @endcomponent
 
-    @include('back-end.comments.index')
-    @include('back-end.comments.create')
+
 
 @endsection
