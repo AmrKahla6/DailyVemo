@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\BackEnd\Users;
+namespace App\Http\Requests\FrontEnd\Comments;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class CommentsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6'],
-            'group'    => ['required']
+            'comment' => ['required' , 'max:2000'],
         ];
     }
 }

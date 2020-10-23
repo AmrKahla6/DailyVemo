@@ -57,7 +57,7 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{asset('assets/js/plugins/nouislider.min.js')}}" type="text/javascript"></script>
     <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
     <script src="{{asset('frontend/assets/js/plugins/moment.min.js')}}"></script>
-    <script src="{{asset('frontend/assets/js/plugins/bootstrap-datepicker.js" type="text/javascript')}}"></script>
+    <script src="{{asset('frontend/assets/js/plugins/bootstrap-datepicker.js')}}" type="text/javascript"></script>
     <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
     <script src="{{asset('frontend/assets/js/paper-kit.js?v=2.2.0" type="text/javascript')}}"></script>
 

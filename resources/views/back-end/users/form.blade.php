@@ -93,5 +93,34 @@
       </div>
 
   </div>
+  @php
 
+  $input = 'group';
+
+@endphp
+
+<div class="col-md-6">
+
+  <div class="form-group bmd-form-group">
+      <div class="form-group">
+          <lable class="bmd-label-placeholder" style="position: inherit;">Roll</lable>
+          <select name="{{ $input }}"  class="form-control  @error($input) is-invalid @enderror" >
+              <option value="admin" {{isset($row) && $row->{$input} == 'admin' ?  "selected" : ""}}>admin</option>
+              <option value="user"  {{isset($row) && $row->{$input} == 'user'  ?  "selected" : ""}}>user</option>
+       </select>
+      </div>
+
+
+          @error($input)
+
+              <span class="invalid-feedback" role="alert">
+
+                  <strong>{{ $message }}</strong>
+
+              </span>
+
+          @enderror
+  </div>
+
+</div>
 </div>

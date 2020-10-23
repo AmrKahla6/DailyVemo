@@ -23,7 +23,7 @@
         <div class="card">
             <div class="card-body">
 
-                {{ $md4 }}
+               {{ isset($md4) ? $md4 : '' }}
 
             </div>
         </div>

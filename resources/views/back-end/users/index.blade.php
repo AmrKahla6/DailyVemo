@@ -47,15 +47,18 @@
             <thead class=" text-primary">
 
                 <tr><th>
-                ID
+                   ID
                 </th>
 
                 <th>
-                Name
+                   Name
                 </th>
 
                 <th>
-                Email
+                   Email
+                </th>
+                <th>
+                   Group
                 </th>
 
                 <th class="text-right">
@@ -77,6 +80,9 @@
 
                         <td>
                             {{ $row->email }}
+                        </td>
+                        <td>
+                            {{ $row->group }}
                         </td>
 
                         <td class="td-actions text-right">

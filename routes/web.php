@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('frontend.landing');
 
-Route::namespace('Backend')->prefix('admin')->group(function(){
+Route::namespace('Backend')->prefix('admin')->middleware(['admin'])->group(function(){
 
     // Home Route
     Route::get('home', 'HomeController@index')->name('admin.home');
@@ -54,5 +54,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('category/{id}', 'HomeController@category')->name('front.category');
-Route::get('skill/{id}', 'HomeController@skill')->name('front.skill');
+Route::get('skill/{id}', 'HomeController@skills')->name('front.skill');
+Route::get('tag/{id}', 'HomeController@tags')->name('front.tag');
+Route::get('video/{id}', 'HomeController@video')->name('frontend-video');
 
+Route::middleware(['auth'])->group(function(){
+
+Route::post('comments/{id}', 'HomeController@commentUpdate')->name('front.commentUpdate');
+Route::post('comments/{id}/create', 'HomeController@commentStore')->name('front.commentStore');
+
+});
