@@ -8,7 +8,7 @@
       {{-- <a href="http://www.creative-tim.com" class="simple-text logo-mini">
         DV
       </a> --}}
-      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      <a href="{{ route('frontend.landing') }}" class="simple-text logo-normal">
         Daily Vemo
       </a>
     </div>
@@ -60,6 +60,14 @@
             <a class="nav-link" href="{{ route('videos.index') }}">
                <i class="material-icons">slideshow</i>
                <p>Video</p>
+             </a>
+          </li>
+
+
+          <li class="nav-item {{ is_active('messages') }}">
+            <a class="nav-link" href="{{ route('messages.index') }}">
+               <i class="material-icons">Messages</i>
+               <p>Messages</p>
              </a>
           </li>
 

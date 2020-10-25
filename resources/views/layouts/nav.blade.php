@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top bg-danger" color-on-scroll="0">
     <div class="container">
       <div class="navbar-translate">
-      <a class="navbar-brand" href="{{ route('home') }}" rel="tooltip" title="Coded by DailyVemo" data-placement="bottom" target="_blank">
+      <a class="navbar-brand" href="{{ route('frontend.landing') }}" rel="tooltip" title="Coded by DailyVemo" data-placement="bottom">
             DailyVemo
         </a>
         <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">

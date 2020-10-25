@@ -7,8 +7,10 @@ use App\Models\Video;
 use App\Models\Category;
 use App\Models\Skill;
 use App\Models\Tag;
+use App\Models\Message;
 use App\Models\Comment;
 use App\Http\Requests\FrontEnd\Comments\CommentsRequest;
+use App\Http\Requests\FrontEnd\Messages\MessagesRequest;
 
 class HomeController extends Controller
 {
@@ -95,4 +97,12 @@ class HomeController extends Controller
          return redirect()->route('frontend-video' , ['id' => $video->id , '#comments']);
 
     }// End of commentUpdate Function
+
+    public function messageStore(MessagesRequest $request)
+    {
+        Message::create($request->all());
+
+        return redirect(route('frontend.landing'));
+
+    }
 }

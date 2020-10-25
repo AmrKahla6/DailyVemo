@@ -46,6 +46,11 @@ Route::namespace('Backend')->prefix('admin')->middleware(['admin'])->group(funct
 
     Route::get('comments/{id}' , 'VideoController@commentDelete')->name('comments.delete');
 
+     // Contact-us Routes
+     Route::resource('messages', 'MessagesController')->only(['index' , 'destroy' , 'edit']);
+     Route::post('messages/replay/{id}' , 'MessagesController@replay')->name('message.replay');
+
+
 
 });// end of admin routes
 
@@ -57,6 +62,7 @@ Route::get('category/{id}', 'HomeController@category')->name('front.category');
 Route::get('skill/{id}', 'HomeController@skills')->name('front.skill');
 Route::get('tag/{id}', 'HomeController@tags')->name('front.tag');
 Route::get('video/{id}', 'HomeController@video')->name('frontend-video');
+Route::post('contact-us', 'HomeController@messageStore')->name('contact.store');
 
 Route::middleware(['auth'])->group(function(){
 
