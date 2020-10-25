@@ -47,24 +47,14 @@
             <thead class=" text-primary">
 
                 <tr><th>
-                ID
+                   ID
                 </th>
 
                 <th>
-                Page Name
+                   Page Name
                 </th>
 
-                <th>
-                    Description
-                </th>
 
-                <th>
-                    Meta Keywords
-                </th>
-
-                <th>
-                    Meta Description
-                </th>
 
                 <th class="text-right">
                 Control
@@ -81,19 +71,6 @@
 
                         <td>
                             {{ $row->name }}
-                        </td>
-
-                        <td>
-                            {{ $row->des }}
-                        </td>
-
-
-                        <td>
-                            {{ $row->meta_keywords }}
-                        </td>
-
-                        <td>
-                            {{ $row->meta_des }}
                         </td>
 
                         <td class="td-actions text-right">

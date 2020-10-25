@@ -9,6 +9,7 @@ use App\Models\Skill;
 use App\Models\Tag;
 use App\Models\Message;
 use App\Models\Comment;
+use App\Models\Page;
 use App\Http\Requests\FrontEnd\Comments\CommentsRequest;
 use App\Http\Requests\FrontEnd\Messages\MessagesRequest;
 
@@ -22,7 +23,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only([
-            'index',
             'commentUpdate',
             'commentStore',
         ]);
@@ -33,6 +33,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function welcome()
+    {
+        $videos = Video::orderby('id' , 'desc')->paginate(9);
+        $videos_counts   = Video::count();
+        $comments_counts = Comment::count();
+        $tags_counts     = Tag::count();
+        return view('welcome' , compact('videos' , 'videos_counts' , 'comments_counts' , 'tags_counts'));
+    }// End of Welcome Function
+
     public function index()
     {
         $videos = Video::orderby('id' , 'desc')->paginate(30);
@@ -101,8 +110,15 @@ class HomeController extends Controller
     public function messageStore(MessagesRequest $request)
     {
         Message::create($request->all());
-
         return redirect(route('frontend.landing'));
+    }// End of messageStore Function
 
+    public function page($id , $slug = null)
+    {
+        $page = Page::findOrFail($id);
+
+        return view('front-end.pages.index' , compact('page'));
     }
+
+
 }
