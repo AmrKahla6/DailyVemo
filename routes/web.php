@@ -63,6 +63,8 @@ Route::get('page/{id}/{slug?}', 'HomeController@page')->name('front.page');
 
 //Front-End routes for auth user
 Route::middleware(['auth'])->group(function(){
+    Route::get('profile/{id}/{slug?}', 'HomeController@profile')->name('front.profile');
+    Route::post('profile', 'HomeController@profileUpdate')->name('profile.update');
     Route::post('comments/{id}', 'HomeController@commentUpdate')->name('front.commentUpdate');
     Route::post('comments/{id}/create', 'HomeController@commentStore')->name('front.commentStore');
 

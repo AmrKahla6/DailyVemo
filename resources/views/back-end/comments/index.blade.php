@@ -26,11 +26,7 @@
                         @include('back-end.comments.form' , ['row' =>$comment])
                         <input type="hidden" name="video_id" value="{{ $row->id }}">
                         <button type="submit" class="btn btn-primary pull-right">Update Comment</button>
-
                         <div class="clearfix"></div>
-
-
-
                       </form>
                 </td>
             </tr>

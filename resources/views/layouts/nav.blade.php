@@ -42,11 +42,13 @@
                 <a href="{{ url('/register') }}" class="nav-link">Register</a>
             </li>
           @else
+
           <li class="nav-item dropdown">
                     <a  class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('front.profile' , ['id' => auth()->user()->id , 'slug' => slug(auth()->user()->name)]) }}">Profile</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -58,7 +60,16 @@
                         </form>
                 </div>
           </li>
+
           @endguest
+          <li>
+            <form class="form-inline lm-auto" style="margin-top : 15px" action="{{ route('home') }}">
+                @csrf
+                <div class="form-group has-white">
+                   <input type="text"  name="search" class="form-control" placeholder="Search...">
+                </div>
+            </form>
+          </li>
         </ul>
       </div>
     </div>

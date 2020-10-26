@@ -17,3 +17,8 @@ function getYoutubeId($url)
 
     return isset($match[1]) ? $match[1] : null ;
 }
+
+function slug(string $name)
+{
+     return strtolower(trim(str_replace(' ' , '_' , $name ))) ;
+}

@@ -10,8 +10,11 @@ use App\Models\Tag;
 use App\Models\Message;
 use App\Models\Comment;
 use App\Models\Page;
+use App\Models\User;
 use App\Http\Requests\FrontEnd\Comments\CommentsRequest;
 use App\Http\Requests\FrontEnd\Messages\MessagesRequest;
+use App\Http\Requests\FrontEnd\Users\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -25,6 +28,7 @@ class HomeController extends Controller
         $this->middleware('auth')->only([
             'commentUpdate',
             'commentStore',
+            'profileUpdate'
         ]);
     }
 
@@ -44,7 +48,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $videos = Video::orderby('id' , 'desc')->paginate(30);
+        $videos = Video::orderby('id' , 'desc');
+        if(request()->has('search') && request()->get('search') != '')
+        {
+            $videos = $videos->where('name' , 'like' , "%".request()->get('search')."%");
+        }
+        $videos =$videos->paginate(30);
         return view('home' , compact('videos'));
     }// End of index Function
 
@@ -116,9 +125,44 @@ class HomeController extends Controller
     public function page($id , $slug = null)
     {
         $page = Page::findOrFail($id);
-
         return view('front-end.pages.index' , compact('page'));
-    }
+    }// End of page Function
 
+    public function profile($id , $slug = null)
+    {
+        $user = User::findOrFail($id);
+        return view('front-end.profile.index' , compact('user'));
+    }// End of profile Function
 
+    public function profileUpdate(UserRequest $request)
+    {
+        $user = User::findOrFail(auth()->user()->id);
+        $array = [];
+        if($request->email != $user->email)
+        {
+            $email = User::where('email' , $request->email)->first();
+
+            if($email == null)
+            {
+                $array['email'] = $request->email;
+            }
+        }
+
+        if($request->name != $user->name)
+        {
+            $array['name'] = $request->name;
+        }
+
+        if($request->password != $user->password)
+        {
+            $array['password'] = Hash::make($request->password);
+        }
+
+        if(!empty($array))
+        {
+            $user->update($array);
+        }
+
+        return redirect(route('front.profile', ['id' => $user->id , 'slug' => slug($user->name)]));
+    }// End of profileUpdate Function
 }
