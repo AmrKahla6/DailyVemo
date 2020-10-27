@@ -25,6 +25,8 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('frontend/assets/img//apple-icon.png')}}">
   <link rel="icon" type="image/png" href="{{asset('frontend/assets/img//favicon.png')}}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="@yield('meta-des')">
+  <meta name="keywords" content="@yield('meta-keywords')">
   <title>
     Daily-Vemo | @yield('title')
   </title>

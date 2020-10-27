@@ -27,6 +27,7 @@
 
                               <a href="" class="btn btn-outline-info btn-round btn-sm">Delete</a>
                           </div>
+
                           <div style="display: none">
                              <form action="{{ route('front.commentUpdate' ,  $comment->id) }}" method="POST">
                               @csrf
@@ -38,6 +39,7 @@
                           </div>
                       @endif
                   </div>
+                  <br>
                       <p> {{ $comment->comment }}</p>
                         <small> <i class="nc-icon nc-watch-time">{{$comment->created_at->diffForHumans()}}</i></small>
 

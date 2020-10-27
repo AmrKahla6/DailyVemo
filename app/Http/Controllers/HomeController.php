@@ -39,8 +39,8 @@ class HomeController extends Controller
      */
     public function welcome()
     {
-        $videos = Video::orderby('id' , 'desc')->paginate(9);
-        $videos_counts   = Video::count();
+        $videos          = Video::published()->orderby('id' , 'desc')->paginate(9);
+        $videos_counts   = Video::published()->count();
         $comments_counts = Comment::count();
         $tags_counts     = Tag::count();
         return view('welcome' , compact('videos' , 'videos_counts' , 'comments_counts' , 'tags_counts'));
@@ -48,7 +48,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $videos = Video::orderby('id' , 'desc');
+        $videos = Video::published()->orderby('id' , 'desc');
         if(request()->has('search') && request()->get('search') != '')
         {
             $videos = $videos->where('name' , 'like' , "%".request()->get('search')."%");
@@ -60,21 +60,21 @@ class HomeController extends Controller
     public function category($id)
     {
         $cat = Category::findOrFail($id);
-        $videos = Video::where('cat_id' , $id)->orderby('id' , 'desc')->paginate(30);
+        $videos = Video::published()->where('cat_id' , $id)->orderby('id' , 'desc')->paginate(30);
         return view('front-end.categories.index' , compact('videos' , 'cat'));
     }// End of category Function
 
 
     public function video($id)
     {
-        $video = Video::with('skills' , 'tags' , 'cat' , 'user' , 'comments.user')->findOrFail($id);
+        $video = Video::published()->with('skills' , 'tags' , 'cat' , 'user' , 'comments.user')->findOrFail($id);
         return view('front-end.videos.index' , compact('video'));
     }// End of video Function
 
     public function skills($id)
     {
         $skill = Skill::findOrFail($id);
-        $videos = Video::whereHas('skills' , function($query) use($id){
+        $videos = Video::published()->whereHas('skills' , function($query) use($id){
             $query->where('skill_id' , $id);
         })->orderby('id' , 'desc')->paginate(30);
         return view('front-end.skills.index' , compact('videos' , 'skill'));
@@ -83,7 +83,7 @@ class HomeController extends Controller
     public function tags($id)
     {
         $tag = Tag::findOrFail($id);
-        $videos = Video::whereHas('tags' , function($query) use($id){
+        $videos = Video::published()->whereHas('tags' , function($query) use($id){
             $query->where('tag_id' , $id);
         })->orderby('id' , 'desc')->paginate(30);
         return view('front-end.tags.index' , compact('videos' , 'tag'));
@@ -104,7 +104,7 @@ class HomeController extends Controller
 
     public function commentStore($id , CommentsRequest $request)
     {
-        $video = Video::findOrFail($id);
+        $video = Video::published()->findOrFail($id);
 
         Comment::create([
             'user_id'  => auth()->user()->id,
